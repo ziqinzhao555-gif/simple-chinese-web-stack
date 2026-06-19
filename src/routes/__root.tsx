@@ -118,8 +118,19 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="min-h-screen bg-white text-gray-900">
+        <header className="border-b border-gray-300">
+          <nav className="mx-auto flex max-w-3xl flex-wrap gap-4 px-4 py-3 text-sm">
+            <Link to="/" activeOptions={{ exact: true }} activeProps={{ className: "font-bold underline" }} className="hover:underline">首页</Link>
+            <Link to="/todos" activeProps={{ className: "font-bold underline" }} className="hover:underline">待办列表</Link>
+            <Link to="/done" activeProps={{ className: "font-bold underline" }} className="hover:underline">已完成</Link>
+            <Link to="/about" activeProps={{ className: "font-bold underline" }} className="hover:underline">关于</Link>
+          </nav>
+        </header>
+        <main className="mx-auto max-w-3xl px-4 py-8">
+          <Outlet />
+        </main>
+      </div>
     </QueryClientProvider>
   );
 }
