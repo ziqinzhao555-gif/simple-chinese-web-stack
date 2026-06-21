@@ -17,7 +17,7 @@ function AboutPage() {
     <section className="space-y-4">
       <h1 className="text-2xl font-bold">关于本作业</h1>
       <p className="text-gray-700 leading-7">
-        这是「互联网技术开发栈」课程的一个小练习，目标是演示最基础的：
+        这是「互联网技术开发栈」课程的一个小练习：
       </p>
       <ul className="list-disc list-inside text-gray-700 space-y-1">
         <li>多个页面之间的跳转（首页 / 待办列表 / 已完成 / 关于）</li>
