@@ -1,41 +1,31 @@
-## 项目主题：待办事项 + 多页面（中文）
+# 把"关于"改成"笔记"功能
 
-一个粗糙但功能完整的小作业网站，重点展示「基础交互」「页面跳转」，并支持上传到 GitHub 后本地克隆运行。
+笔记功能本身（`/about` 路由下的增删改 + localStorage 持久化）已经在 `src/hooks/useNotes.ts` 和 `src/routes/about.tsx` 实现完成，顶部导航也已经是「笔记」。本次计划只补齐**首页文案/链接**和**README 文档**，让整个项目对外（GitHub）展示一致，然后通过 Lovable 的 GitHub 集成把改动同步上去。
 
-## 页面结构（4 个路由）
+## 改动清单
 
-1. **首页 `/`**：欢迎语 + 简介 + 进入待办按钮
-2. **待办列表 `/todos`**：输入框 + 添加、勾选完成（划线）、删除；顶部显示「共 X 条，已完成 Y 条」
-3. **已完成 `/done`**：仅展示已完成任务，可恢复 / 删除
-4. **关于 `/about`**：作业说明 + 简单自我介绍
+### 1. `src/routes/index.tsx`（首页）
+- 把首页副标题里只提"待办"的描述补一句：可以在「笔记」页记录想法。
+- 把右侧次按钮 `关于本作业` 改成 `查看笔记`，链接保持 `to="/about"`（路由路径不动，避免动到 `routeTree.gen.ts`）。
 
-## 交互点
+### 2. `README.md`
+- 功能列表：把 `关于：作业说明` 改成 `笔记：新建 / 编辑 / 删除个人笔记，localStorage 持久化`。
+- 路由表：`/about` 的说明从 `关于` 改成 `笔记`。
+- 目录结构：在 `hooks/` 下补 `useNotes.ts` 说明；`about.tsx` 注释改为 `笔记页`。
+- 在「功能」段落顶部加一行：本作业在原"待办"基础上新增了"笔记"模块。
 
-- 表单提交 + 回车添加任务
-- 勾选完成 / 取消完成
-- 删除任务
-- 顶部导航栏跳转，当前页高亮
-- `localStorage` 持久化，刷新不丢
+### 3. 不做的改动（明确说明，避免误操作）
+- **不重命名** `about.tsx` → `notes.tsx`。重命名会改动 `routeTree.gen.ts` 和所有 `<Link to="/about">`，对当前小作业收益低、风险高。URL 是 `/about`、页面内容是「笔记」，对作业演示完全够用。
+- 不动 `useTodos.ts`、`todos.tsx`、`done.tsx`。
+- 不引入新依赖、不接后端。
 
-## 技术实现
+## 同步到 GitHub 的方式
 
-- TanStack Start 文件路由：`src/routes/index.tsx`、`todos.tsx`、`done.tsx`、`about.tsx`
-- 共享数据：`src/hooks/useTodos.ts`（`useState` + `localStorage`）
-- 导航栏：写在 `src/routes/__root.tsx`，用 `<Link>`
-- 样式：Tailwind 默认类，黑白灰 + 简单边框，保持「粗糙」
+Lovable 与 GitHub 已连接的情况下，**所有在 Lovable 里的代码改动会自动 commit & push 到你绑定的仓库**，不需要手动操作 git。流程：
 
-## GitHub 展示与运行
+1. 在 Lovable 里点 "Implement plan" → 本计划里的改动落到代码。
+2. 等待几秒，Lovable 会自动把这次 commit 推到 GitHub 主分支。
+3. 刷新 GitHub 仓库页面，就能看到新提交（commit message 通常包含本次改动概要），点开 `src/routes/about.tsx` 即可看到笔记功能源码。
+4. 别人 `git clone` 后按 README 跑 `bun install && bun dev`，访问 `/about` 即可看到笔记页。
 
-- 编写中文 `README.md`，内容包含：
-  - 项目简介、功能截图位（可选）
-  - 技术栈说明（React + TanStack Start + Vite + Tailwind）
-  - 本地运行命令：`bun install` → `bun dev`；附 npm 等价命令
-  - 页面与交互说明
-- 在 Lovable 里完成代码后，通过左下角 **+ → GitHub → Connect project** 把代码推送到自己的 GitHub 仓库
-- 仓库连接后，任何人都可以 `git clone` 下来按 README 运行，也可直接在 GitHub 网页浏览代码
-
-## 不做的事
-
-- 不接后端 / 不开 Lovable Cloud
-- 不做登录注册、不做动画、不做响应式精调
-- 不引入额外组件库定制
+如果你希望我**顺便把 URL 也改成 `/notes`**（更直观，但要改 4-5 处链接 + 重命名路由文件），告诉我一声，我把这一步加进计划。

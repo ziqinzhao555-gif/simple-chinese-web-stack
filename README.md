@@ -4,10 +4,12 @@
 
 ## 功能
 
+本作业在原"待办"基础上新增了"笔记"模块。
+
 - 首页：项目介绍
 - 待办列表：添加任务、勾选完成、删除任务
 - 已完成：查看已完成任务，可恢复或删除
-- 关于：作业说明
+- 笔记：新建 / 编辑 / 删除个人笔记，localStorage 持久化
 - 数据使用浏览器 `localStorage` 持久化，刷新不丢失
 
 ## 技术栈
@@ -42,7 +44,7 @@ npm run dev
 | `/` | 首页 |
 | `/todos` | 待办列表 |
 | `/done` | 已完成 |
-| `/about` | 关于 |
+| `/about` | 笔记 |
 
 ## 目录结构（核心部分）
 
@@ -53,9 +55,10 @@ src/
     index.tsx      # 首页
     todos.tsx      # 待办列表
     done.tsx       # 已完成
-    about.tsx      # 关于
+    about.tsx      # 笔记页
   hooks/
     useTodos.ts    # 待办数据 + localStorage 持久化
+    useNotes.ts    # 笔记数据 + localStorage 持久化
 ```
 
 ## 在 GitHub 上查看 / 运行
