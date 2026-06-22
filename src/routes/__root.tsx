@@ -124,7 +124,7 @@ function RootComponent() {
             <Link to="/" activeOptions={{ exact: true }} activeProps={{ className: "font-bold underline" }} className="hover:underline">首页</Link>
             <Link to="/todos" activeProps={{ className: "font-bold underline" }} className="hover:underline">待办列表</Link>
             <Link to="/done" activeProps={{ className: "font-bold underline" }} className="hover:underline">已完成</Link>
-            <Link to="/about" activeProps={{ className: "font-bold underline" }} className="hover:underline">关于</Link>
+            <Link to="/about" activeProps={{ className: "font-bold underline" }} className="hover:underline">笔记</Link>
           </nav>
         </header>
         <main className="mx-auto max-w-3xl px-4 py-8">
