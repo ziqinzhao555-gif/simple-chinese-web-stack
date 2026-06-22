@@ -47,7 +47,8 @@ export function useNotes() {
       content: content.trim(),
       updatedAt: Date.now(),
     };
-    setNotes((prev) => [newNote, ...prev]); // 最新笔记显示在最上面
+    setNotes((prev) => [newNote, ...prev]);
+    return newNote;
   };
 
   // 更新笔记
